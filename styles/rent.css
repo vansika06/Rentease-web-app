@@ -1,0 +1,24 @@
+p{
+    color: rgb(255, 94, 0);
+    font-weight: 600;
+    text-shadow:0px 1px 1px black;
+}
+#log{
+    font-size: 70px;
+    font-weight: 600;
+    text-shadow:0px 1px 1px black;
+    color: rgba(248, 21, 66, 0.888);
+
+}
+.mybutton:hover,
+.mybutton:focus {
+  background-color: #fff;
+  color: #333;
+}
+.txt{
+    text-shadow: 2px 2px 5px yellow;
+}
+body{
+   
+    
+    background: #caf0f8; }

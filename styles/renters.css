@@ -1,0 +1,29 @@
+h1{
+    text-align: center;
+    color:yellow;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 0 5px white;
+}
+body{
+    background: #D3EDFE;
+}
+.cont
+{
+    
+    border: 2px solid black ;
+    box-sizing: border-box;
+    margin: 0 auto;
+    
+    background: #fcf6bd;
+    padding:0 auto;
+}
+h2{
+    margin: 5px;
+    padding: 5px;
+}
+@media screen and (max-width:767px){
+    .cont{
+        margin: 0 auto;
+        padding: 0 auto;
+        margin-top: 10vh; 
+
+    }}

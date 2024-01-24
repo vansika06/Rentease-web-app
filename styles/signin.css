@@ -1,0 +1,20 @@
+.container{
+    padding-top: 150px;
+}
+#logo{
+    padding-top: 20px;
+    color: #ffa500;
+}
+body{
+    
+    background:  #EBEADF;
+}
+#login{
+    transition: all 0.5s ease-out;
+}
+
+#login:hover,
+#login:focus {
+  background-color: #ffffff;
+  color: #333;
+}
