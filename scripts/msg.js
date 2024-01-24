@@ -72,6 +72,12 @@ onAuthStateChanged(auth, async (user) => {
         btn2.classList.add("btn-warning");
         btn2.textContent="SUBMIT";
         btn2.setAttribute("type", "submit");
+        const form = document.createElement("form");
+        li.appendChild(h2);
+       form.appendChild(inputText);
+     form.appendChild(btn2);
+    li.appendChild(form);
+    rents.appendChild(li);
         //li.appendChild(inputText);
         //li.appendChild(btn2);
         btn2.addEventListener("submit",async(e)=>{
@@ -81,9 +87,9 @@ onAuthStateChanged(auth, async (user) => {
             await updateDoc(ref,{
               reply:text
             });
-            li.appendChild(h2);
+           
            // li.appendChild(form);
-            rents.appendChild(li);
+           // rents.appendChild(li);
           }
         })
       }})}})
