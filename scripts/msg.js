@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js'
 import { getAuth,onAuthStateChanged ,createUserWithEmailAndPassword,signOut,signInWithEmailAndPassword,setPersistence} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js'
-import { getFirestore,addDoc,doc,setDoc,getDoc, query, where,collection,getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js'
+import { getFirestore,addDoc,doc,setDoc,getDoc, query, where,collection,getDocs,updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js'
 const db=getFirestore();
 const auth=getAuth();
 
@@ -11,8 +11,9 @@ onAuthStateChanged(auth, async (user) => {
       var docRef = collection(db, "messages");
       //ref=collection(docRef,"rented");
       const docSnap = await getDocs(docRef);
-      docSnap.forEach(async(doc) => {
-        const data=doc.data();
+      docSnap.forEach(async(docs) => {
+        const data=docs.data();
+          const docid=docs.id;
         if(data["userid"]===id){
        
         const li=document.createElement("li");
@@ -59,6 +60,7 @@ onAuthStateChanged(auth, async (user) => {
         li.appendChild(user);
 
         li.appendChild(msg);
+          if(data["reply"]==="no reply yet"){
         const h2=document.createElement("h2");
             h2.textContent="REPLY"
         //const form=document.createElement("form");
@@ -80,18 +82,19 @@ onAuthStateChanged(auth, async (user) => {
     rents.appendChild(li);
         //li.appendChild(inputText);
         //li.appendChild(btn2);
-        btn2.addEventListener("submit",async(e)=>{
+        form.addEventListener("submit",async(e)=>{
           e.preventDefault();
           if(inputText.value!==""){
             const ref=doc(db,"messages",doc.id)
             await updateDoc(ref,{
-              reply:text
+              reply:inputText.value
             });
            
            // li.appendChild(form);
            // rents.appendChild(li);
           }
-        })
+        })}
+        rents.appendChild(li);  
       }})}})
       function view(id) {
         window.location.href = `../html files/section.html?search=${encodeURIComponent(JSON.stringify(id))}`
