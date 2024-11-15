@@ -21,10 +21,16 @@ let id=[];
  querySnapshot.forEach((doc) => {
 //   // doc.data() is never undefined for query doc snapshots
    console.log(doc.id, " => ", doc.data());
+<<<<<<< HEAD
   let itemId=doc.id;
    console.log(itemId);
    results.push(doc.data());
    id.push(itemId);
+=======
+   let itemId=doc.id;
+   results.push(doc.data())
+     id.push(itemId);
+>>>>>>> 7908a1ca55923a8ec158d222edfeca05b63c8c6d
 //
  });}
 // window.location.href=`search.html?search=${encodeURIComponent(JSON.stringify(search))}`})
@@ -38,11 +44,19 @@ if(results.length===0){
   const h2=document.querySelector("#ifsearch");
   h2.textContent="Sorry Items Not Found!!!";
 }
+<<<<<<< HEAD
 const searchRow=document.querySelector("#search");
 let c=0;
 
 for(let i of results){
   let iid;
+=======
+const searchRow=document.querySelector("#search")
+let c=0;
+ 
+for(let i of results){
+   let iid;
+>>>>>>> 7908a1ca55923a8ec158d222edfeca05b63c8c6d
   iid=id[c];
   c++;
   console.log(iid);
@@ -51,7 +65,10 @@ function display(i,iid){
     const itemContainer = document.createElement("div");
     console.log("created")
     itemContainer.id = iid;
+<<<<<<< HEAD
     console.log(itemContainer.id);
+=======
+>>>>>>> 7908a1ca55923a8ec158d222edfeca05b63c8c6d
     itemContainer.classList.add("col-md-3"); 
     itemContainer.classList.add("items");
     itemContainer.classList.add("text-center");

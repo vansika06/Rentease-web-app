@@ -13,7 +13,11 @@ onAuthStateChanged(auth, async (user) => {
       const docSnap = await getDocs(docRef);
       docSnap.forEach(async(docs) => {
         const data=docs.data();
+<<<<<<< HEAD
         const docid=docs.id;
+=======
+          const docid=docs.id;
+>>>>>>> 7908a1ca55923a8ec158d222edfeca05b63c8c6d
         if(data["userid"]===id){
        
         const li=document.createElement("li");
@@ -60,6 +64,7 @@ onAuthStateChanged(auth, async (user) => {
         li.appendChild(user);
 
         li.appendChild(msg);
+          if(data["reply"]==="no reply yet"){
         const h2=document.createElement("h2");
             h2.textContent="REPLY"
         //const form=document.createElement("form");
@@ -76,8 +81,13 @@ onAuthStateChanged(auth, async (user) => {
         btn2.setAttribute("type", "submit");
         const form = document.createElement("form");
         li.appendChild(h2);
+<<<<<<< HEAD
   form.appendChild(inputText);
   form.appendChild(btn2);
+=======
+       form.appendChild(inputText);
+     form.appendChild(btn2);
+>>>>>>> 7908a1ca55923a8ec158d222edfeca05b63c8c6d
     li.appendChild(form);
     rents.appendChild(li);
         //li.appendChild(inputText);
@@ -85,6 +95,7 @@ onAuthStateChanged(auth, async (user) => {
         form.addEventListener("submit",async(e)=>{
           e.preventDefault();
           if(inputText.value!==""){
+<<<<<<< HEAD
             const ref1=doc(db,"messages",docid)
             try{
             await updateDoc(ref1,{
@@ -100,6 +111,18 @@ onAuthStateChanged(auth, async (user) => {
           }
         })}
         rents.appendChild(li);
+=======
+            const ref=doc(db,"messages",doc.id)
+            await updateDoc(ref,{
+              reply:inputText.value
+            });
+           
+           // li.appendChild(form);
+           // rents.appendChild(li);
+          }
+        })}
+        rents.appendChild(li);  
+>>>>>>> 7908a1ca55923a8ec158d222edfeca05b63c8c6d
       }})}})
       function view(id) {
         window.location.href = `../html files/section.html?search=${encodeURIComponent(JSON.stringify(id))}`
