@@ -9,6 +9,7 @@ import { getFirestore,addDoc,doc,setDoc,collection } from 'https://www.gstatic.c
 
 // sign in a user
 signupForm.addEventListener("submit",(e)=>{
+  
   e.preventDefault();
   const email=signupForm.elements.e.value;
   const password=signupForm.elements.p.value;

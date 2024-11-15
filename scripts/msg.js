@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js'
 import { getAuth,onAuthStateChanged ,createUserWithEmailAndPassword,signOut,signInWithEmailAndPassword,setPersistence} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js'
-import { getFirestore,addDoc,doc,setDoc,getDoc, query, where,collection,getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js'
+import { getFirestore,addDoc,doc,setDoc,getDoc, query, where,collection,getDocs,updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js'
 const db=getFirestore();
 const auth=getAuth();
 
@@ -11,8 +11,9 @@ onAuthStateChanged(auth, async (user) => {
       var docRef = collection(db, "messages");
       //ref=collection(docRef,"rented");
       const docSnap = await getDocs(docRef);
-      docSnap.forEach(async(doc) => {
-        const data=doc.data();
+      docSnap.forEach(async(docs) => {
+        const data=docs.data();
+        const docid=docs.id;
         if(data["userid"]===id){
        
         const li=document.createElement("li");
@@ -66,26 +67,39 @@ onAuthStateChanged(auth, async (user) => {
         inputText.setAttribute("type", "text");
         //const text=document.createElement("textarea");
         console.log(li);
+        if(data["reply"]==="no reply yet"){
         inputText.classList.add("form-control");
         const btn2=document.createElement("button");
         btn2.classList.add("btn");
         btn2.classList.add("btn-warning");
         btn2.textContent="SUBMIT";
         btn2.setAttribute("type", "submit");
+        const form = document.createElement("form");
+        li.appendChild(h2);
+  form.appendChild(inputText);
+  form.appendChild(btn2);
+    li.appendChild(form);
+    rents.appendChild(li);
         //li.appendChild(inputText);
         //li.appendChild(btn2);
-        btn2.addEventListener("submit",async(e)=>{
+        form.addEventListener("submit",async(e)=>{
           e.preventDefault();
           if(inputText.value!==""){
-            const ref=doc(db,"messages",doc.id)
-            await updateDoc(ref,{
-              reply:text
+            const ref1=doc(db,"messages",docid)
+            try{
+            await updateDoc(ref1,{
+              reply:inputText.value
             });
-            li.appendChild(h2);
+            btn2.disabled=true;}
+            catch(error){
+              console.log(error);
+            }
+           // btn2.disabled=true;
            // li.appendChild(form);
-            rents.appendChild(li);
+            //rents.appendChild(li);
           }
-        })
+        })}
+        rents.appendChild(li);
       }})}})
       function view(id) {
         window.location.href = `../html files/section.html?search=${encodeURIComponent(JSON.stringify(id))}`

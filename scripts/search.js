@@ -11,7 +11,8 @@ console.log(searchResults);
 const Ref = collection(db, "itemlist");
 
 let results=[];
-let itemId
+let id=[];
+//let itemId
  try{
  const q = query(Ref, where("itemName", "==", searchResults));
  const querySnapshot = await getDocs(q);//retrieving all such queries
@@ -20,8 +21,10 @@ let itemId
  querySnapshot.forEach((doc) => {
 //   // doc.data() is never undefined for query doc snapshots
    console.log(doc.id, " => ", doc.data());
-   itemId=doc.id;
-   results.push(doc.data())
+  let itemId=doc.id;
+   console.log(itemId);
+   results.push(doc.data());
+   id.push(itemId);
 //
  });}
 // window.location.href=`search.html?search=${encodeURIComponent(JSON.stringify(search))}`})
@@ -35,13 +38,20 @@ if(results.length===0){
   const h2=document.querySelector("#ifsearch");
   h2.textContent="Sorry Items Not Found!!!";
 }
-const searchRow=document.querySelector("#search")
+const searchRow=document.querySelector("#search");
+let c=0;
+
 for(let i of results){
-  display(i);}
-function display(i){
+  let iid;
+  iid=id[c];
+  c++;
+  console.log(iid);
+  display(i,iid);}
+function display(i,iid){
     const itemContainer = document.createElement("div");
     console.log("created")
-    itemContainer.id = itemId;
+    itemContainer.id = iid;
+    console.log(itemContainer.id);
     itemContainer.classList.add("col-md-3"); 
     itemContainer.classList.add("items");
     itemContainer.classList.add("text-center");
@@ -59,7 +69,7 @@ function display(i){
 
   const ipr = document.createElement("h4");
   ipr.classList.add("text");
-  ipr.textContent = i['itemPrice'];
+  ipr.textContent = i["itemPrice"];
 
   const stat = document.createElement("h4");
   stat.classList.add("text");

@@ -8,11 +8,11 @@ import { getFirestore,addDoc,doc,setDoc,getDoc, query, where,collection,getDocs 
 
 // Your web app's Firebase configuration
 const firebaseApp =  initializeApp({
-  apiKey: "AIzaSyAB5fB5iz6u0Dqyu22VnalRgvZOLFZnmAw",
-  authDomain: "rentease-1baab.firebaseapp.com",
-  projectId: "rentease-1baab",
-  storageBucket: "rentease-1baab.appspot.com",
-  messagingSenderId: "741274460827",
-  appId: "1:741274460827:web:5b0682441ee7ffae3d9c3e"
+  apiKey: "AIzaSyCNqAFMQWq_X3UrA0au5OtbrLV1cFFc650",
+  authDomain: "rent-8401c.firebaseapp.com",
+  projectId: "rent-8401c",
+  storageBucket: "rent-8401c.firebasestorage.app",
+  messagingSenderId: "650110761056",
+  appId: "1:650110761056:web:52b6f3afd59ba3756e2b05"
 });
 
